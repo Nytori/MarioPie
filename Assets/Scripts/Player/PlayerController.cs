@@ -10,6 +10,7 @@ namespace MarioPie.Player
         [SerializeField] PlayerInput input;
 
         PlayfieldLimits limits;
+        PlayerPieActor pies;
         int sideIndex;
         bool ready;
 
@@ -33,11 +34,21 @@ namespace MarioPie.Player
             if (!ready || input == null || input.actions == null)
                 return;
 
+            if (pies == null)
+                pies = GetComponent<PlayerPieActor>();
+
+            var vertical = body.isGrounded ? -0.5f * Time.deltaTime : -8f * Time.deltaTime;
+            if (pies != null && pies.BlocksMovement)
+            {
+                body.Move(new Vector3(0f, vertical, 0f));
+                return;
+            }
+
             var move = input.actions["Move"].ReadValue<Vector2>();
             var velocity = PlayerMotion.Velocity(move, speed);
             var next = PlayerMotion.ClampToSide(transform.position + velocity * Time.deltaTime, sideIndex, limits);
             var delta = next - transform.position;
-            delta.y = body.isGrounded ? -0.5f * Time.deltaTime : -8f * Time.deltaTime;
+            delta.y = vertical;
             body.Move(delta);
 
             if (velocity.sqrMagnitude > 0.0001f)

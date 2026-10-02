@@ -11,6 +11,7 @@ namespace MarioPie.Match
         [SerializeField] Playfield playfield;
         [SerializeField] Transform[] spawns;
         [SerializeField] Transform playerRoot;
+        [SerializeField] PiePresentation presentation;
 
         void Awake()
         {
@@ -20,6 +21,27 @@ namespace MarioPie.Match
 
         void Start()
         {
+            if (presentation == null)
+                presentation = Resources.Load<PiePresentation>("PiePresentation");
+            if (presentation == null)
+            {
+                Debug.LogError("Falta o asset PiePresentation.", this);
+                return;
+            }
+
+            var supplies = PieTableBinder.Bind(
+                playfield.transform,
+                Mathf.Max(0.05f, presentation.respawnSeconds),
+                Mathf.Max(0.2f, presentation.grabRadius));
+            if (supplies.Length == 0)
+                Debug.LogWarning("Nenhuma tarte encontrada nas bancadas.", this);
+
+            var splatsObject = new GameObject("Splats");
+            splatsObject.transform.SetParent(playfield.transform, false);
+            var splats = splatsObject.AddComponent<SplatField>();
+            splats.Setup(presentation.splatModel);
+
+            var actors = new PlayerPieActor[SeatAssignment.SeatCount];
             var seats = SeatAssignment.Assign(Gamepad.all.Count);
             for (var i = 0; i < seats.Length; i++)
             {
@@ -44,7 +66,20 @@ namespace MarioPie.Match
                 Place(player, spawns[i]);
                 player.GetComponent<PlayerController>().Configure(i, playfield.Limits);
                 player.GetComponent<PlayerAppearance>().ApplySide(i);
+                var actor = player.gameObject.AddComponent<PlayerPieActor>();
+                actor.Configure(i, supplies, splats, presentation);
+                actors[i] = actor;
             }
+
+            if (actors[0] != null)
+                actors[0].SetOpponent(actors[1]);
+            if (actors[1] != null)
+                actors[1].SetOpponent(actors[0]);
+
+            var hud = GetComponent<MatchScoreHud>();
+            if (hud == null)
+                hud = gameObject.AddComponent<MatchScoreHud>();
+            hud.Bind(actors[0], actors[1]);
         }
 
         static InputDevice ResolveDevice(ControlSeat seat)
