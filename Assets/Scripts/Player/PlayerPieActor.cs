@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,11 +20,15 @@ namespace MarioPie.Player
         GameObject[] heldVisuals = System.Array.Empty<GameObject>();
         Vector3[] heldRest = System.Array.Empty<Vector3>();
         PlayerPieActor opponent;
+        PieFlight flight;
+        Action requestRematch;
         Vector3 lockedAim = Vector3.right;
         float windup;
         float refire;
         int side;
         bool ready;
+        bool playOpen = true;
+        bool rematchOpen;
 
         public int Side => side;
         public int Score { get; private set; }
@@ -87,6 +92,83 @@ namespace MarioPie.Player
             opponent = other;
         }
 
+        public void BindMatch(PieFlight pies, Action rematch)
+        {
+            flight = pies;
+            requestRematch = rematch;
+        }
+
+        public void ApplyGate(bool play, bool rematch)
+        {
+            playOpen = play;
+            rematchOpen = rematch;
+            if (!play)
+                windup = 0f;
+        }
+
+        public void HoldDemoPie()
+        {
+            if (hands != null && hands.Held <= 0)
+                hands.TryTake();
+        }
+
+        public void FaceFlat(Vector3 direction)
+        {
+            direction.y = 0f;
+            if (direction.sqrMagnitude < 0.0001f)
+                return;
+
+            transform.rotation = Quaternion.LookRotation(direction.normalized, Vector3.up);
+        }
+
+        public void ThrowToGround(Vector3 land)
+        {
+            var aim = land - transform.position;
+            aim.y = 0f;
+            if (aim.sqrMagnitude < 0.01f)
+                aim = side == 0 ? Vector3.right : Vector3.left;
+
+            lockedAim = aim.normalized;
+            transform.rotation = Quaternion.LookRotation(lockedAim, Vector3.up);
+            if (hands == null)
+                return;
+            if (hands.Held <= 0)
+                hands.TryTake();
+            if (!hands.TrySpend())
+                return;
+
+            LaunchThrown(5.2f, 58f, hitOpponent: false);
+        }
+
+        public bool TakeSupply(PieSupply supply)
+        {
+            if (hands != null && hands.Held > 0)
+                return true;
+            if (supply == null || hands == null || !supply.Available)
+                return false;
+            if (!hands.TryTake())
+                return false;
+            if (!supply.TryTake())
+            {
+                hands.TrySpend();
+                return false;
+            }
+
+            return true;
+        }
+
+        public void ResetRound()
+        {
+            Score = 0;
+            windup = 0f;
+            refire = 0f;
+            stun.Clear();
+            if (hands != null)
+                hands.Clear();
+            if (creamCoat != null)
+                creamCoat.Clear();
+        }
+
         public void AwardPoint()
         {
             Score++;
@@ -121,8 +203,10 @@ namespace MarioPie.Player
                     Release();
             }
 
-            if (!stun.Active && windup <= 0f && refire <= 0f && PressedThrow())
+            if (playOpen && !stun.Active && windup <= 0f && refire <= 0f && PressedThrow())
                 BeginThrow();
+            else if (!playOpen && rematchOpen && PressedThrow())
+                requestRematch?.Invoke();
         }
 
         void LateUpdate()
@@ -130,7 +214,7 @@ namespace MarioPie.Player
             if (!ready)
                 return;
 
-            if (!stun.Active && windup <= 0f)
+            if (playOpen && !stun.Active && windup <= 0f)
                 TryPickup();
 
             RefreshHeld();
@@ -164,12 +248,26 @@ namespace MarioPie.Player
             refire = Mathf.Max(0f, presentation != null ? presentation.refireSeconds : PieDefaults.RefireSeconds);
             var speed = Positive(presentation != null ? presentation.throwSpeed : PieDefaults.ThrowSpeed, PieDefaults.ThrowSpeed);
             var lob = presentation != null ? presentation.lobDegrees : PieDefaults.LobDegrees;
+            LaunchThrown(speed, lob, hitOpponent: true);
+        }
+
+        void LaunchThrown(float speed, float lob, bool hitOpponent)
+        {
             var gravity = Positive(presentation != null ? presentation.gravity : PieDefaults.Gravity, PieDefaults.Gravity);
             var origin = transform.position + Vector3.up * PieDefaults.ReleaseHeight + lockedAim * 0.8f;
             var pie = new GameObject("Thrown Pie");
             var thrown = pie.AddComponent<ThrownPie>();
             var model = presentation != null ? presentation.pieModel : null;
-            thrown.Launch(origin, PieBallistics.LaunchVelocity(lockedAim, speed, lob), gravity, PieDefaults.HitRadius, this, opponent, model, splats);
+            thrown.Launch(
+                origin,
+                PieBallistics.LaunchVelocity(lockedAim, speed, lob),
+                gravity,
+                PieDefaults.HitRadius,
+                this,
+                hitOpponent ? opponent : null,
+                model,
+                splats,
+                flight);
         }
 
         void TryPickup()

@@ -12,6 +12,8 @@ namespace MarioPie.Player
         float gravity;
         float hitRadius;
         bool resolved;
+        PieFlight flight;
+        bool counted;
 
         public void Launch(
             Vector3 origin,
@@ -21,7 +23,8 @@ namespace MarioPie.Player
             PlayerPieActor owner,
             PlayerPieActor opponent,
             GameObject piePrefab,
-            SplatField splatField)
+            SplatField splatField,
+            PieFlight pies)
         {
             thrower = owner;
             target = opponent;
@@ -29,7 +32,13 @@ namespace MarioPie.Player
             velocity = initialVelocity;
             gravity = flightGravity;
             hitRadius = radius;
+            flight = pies;
             transform.position = origin;
+            if (flight != null)
+            {
+                flight.Begin();
+                counted = true;
+            }
             var visual = PieProps.Spawn(piePrefab, transform);
             if (visual != null)
                 visual.name = "Visual";
@@ -84,6 +93,15 @@ namespace MarioPie.Player
         void Resolve()
         {
             resolved = true;
+        }
+
+        void OnDestroy()
+        {
+            if (!counted || flight == null)
+                return;
+
+            counted = false;
+            flight.End();
         }
     }
 }

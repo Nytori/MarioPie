@@ -15,5 +15,10 @@ namespace MarioPie.Player
             if (Count < Max)
                 Count++;
         }
+
+        public void Clear()
+        {
+            Count = 0;
+        }
     }
 }

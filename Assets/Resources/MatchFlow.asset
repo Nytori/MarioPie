@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61863d7c7d1f6724599e5eb57c8b38d7, type: 3}
+  m_Name: MatchFlow
+  m_EditorClassIdentifier: MarioPie::MarioPie.Match.MatchFlow
+  introSeconds: 8
+  cameraIntroSeconds: 1.6
+  startCardSeconds: 0.9
+  roundSeconds: 30
+  hurrySeconds: 10
+  resultHoldSeconds: 1.5
+  resultCameraSeconds: 1.2
+  scorePunchSeconds: 0.28
+  hurryColor: {r: 1, g: 0.32, b: 0.22, a: 1}
+  timeColor: {r: 1, g: 1, b: 1, a: 1}
+  winScoreScale: 1.35
+  readyBob: 0.08
+  winHop: 0.35
+  tieHop: 0.16
+  loseSquash: 0.72
+  cardStart: {fileID: 4819203344556677889, guid: 7e4c1a9b2d8f4e6a9c0b3d5f1a2e4c60, type: 3}
+  cardTimeUp: {fileID: 7099678499609638372, guid: 9df7c5bb27ee8a84691246c2abbd67f5, type: 3}
+  cardWinLeft: {fileID: 3632310463212852267, guid: 5a15658df4bfe744fa7127bbcbfd1e98, type: 3}
+  cardWinRight: {fileID: 280004646522342604, guid: fcdf06a2b7bf36d49a17ae75df5ef3d9, type: 3}
+  cardTie: {fileID: 7798142903323801828, guid: 6b8fecf2df2d21c4faf27a79b40d6f7c, type: 3}
+  scorePopup: {fileID: 7878227475152911064, guid: 7cd20e4efe2621347b259f8dc4843266, type: 3}

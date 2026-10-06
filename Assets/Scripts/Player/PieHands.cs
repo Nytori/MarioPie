@@ -20,6 +20,11 @@ namespace MarioPie.Player
             return true;
         }
 
+        public void Clear()
+        {
+            Held = 0;
+        }
+
         public bool TrySpend()
         {
             if (Held <= 0)

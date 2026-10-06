@@ -13,6 +13,7 @@ namespace MarioPie.Player
         PlayerPieActor pies;
         int sideIndex;
         bool ready;
+        bool playOpen = true;
 
         void Awake()
         {
@@ -29,6 +30,32 @@ namespace MarioPie.Player
             ready = true;
         }
 
+        public void SetPlayOpen(bool open)
+        {
+            playOpen = open;
+        }
+
+        public bool MarchToward(Vector3 target, float dt, float arriveDistance = 0.9f)
+        {
+            var flat = target - transform.position;
+            flat.y = 0f;
+            var arrive = arriveDistance * arriveDistance;
+            if (flat.sqrMagnitude <= arrive)
+                return true;
+
+            var step = Vector3.ClampMagnitude(flat, speed * dt);
+            var next = PlayerMotion.ClampToSide(transform.position + step, sideIndex, limits);
+            var delta = next - transform.position;
+            delta.y = 0f;
+            body.Move(delta);
+            if (delta.sqrMagnitude > 0.0001f)
+                transform.rotation = PlayerMotion.Facing(delta, transform.rotation);
+
+            flat = target - transform.position;
+            flat.y = 0f;
+            return flat.sqrMagnitude <= arrive;
+        }
+
         void Update()
         {
             if (!ready || input == null || input.actions == null)
@@ -38,7 +65,7 @@ namespace MarioPie.Player
                 pies = GetComponent<PlayerPieActor>();
 
             var vertical = body.isGrounded ? -0.5f * Time.deltaTime : -8f * Time.deltaTime;
-            if (pies != null && pies.BlocksMovement)
+            if (!playOpen || (pies != null && pies.BlocksMovement))
             {
                 body.Move(new Vector3(0f, vertical, 0f));
                 return;

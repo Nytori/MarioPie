@@ -7,6 +7,8 @@ namespace MarioPie.Player
         [SerializeField] Renderer body;
         [SerializeField] Material[] sideMaterials;
 
+        public Renderer Body => body;
+
         public void ApplySide(int sideIndex)
         {
             if (body == null || sideMaterials == null || sideMaterials.Length == 0)

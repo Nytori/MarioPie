@@ -1,11 +1,13 @@
 {
-    "name": "MarioPie",
-    "rootNamespace": "MarioPie",
+    "name": "MarioPie.Editor",
+    "rootNamespace": "MarioPie.EditorTools",
     "references": [
-        "Unity.InputSystem",
+        "MarioPie",
         "UnityEngine.UI"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

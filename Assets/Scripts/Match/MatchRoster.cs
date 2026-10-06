@@ -63,7 +63,7 @@ namespace MarioPie.Match
                 if (playerRoot != null)
                     player.transform.SetParent(playerRoot, true);
 
-                Place(player, spawns[i]);
+                PlayerSpawn.Place(player, spawns[i]);
                 player.GetComponent<PlayerController>().Configure(i, playfield.Limits);
                 player.GetComponent<PlayerAppearance>().ApplySide(i);
                 var actor = player.gameObject.AddComponent<PlayerPieActor>();
@@ -76,10 +76,26 @@ namespace MarioPie.Match
             if (actors[1] != null)
                 actors[1].SetOpponent(actors[0]);
 
-            var hud = GetComponent<MatchScoreHud>();
-            if (hud == null)
-                hud = gameObject.AddComponent<MatchScoreHud>();
-            hud.Bind(actors[0], actors[1]);
+            var controllers = new PlayerController[actors.Length];
+            for (var i = 0; i < actors.Length; i++)
+            {
+                if (actors[i] != null)
+                    controllers[i] = actors[i].GetComponent<PlayerController>();
+            }
+
+            var director = GetComponent<MatchDirector>();
+            if (director == null)
+                director = gameObject.AddComponent<MatchDirector>();
+            if (director.Begin(actors, controllers, supplies, splats, spawns))
+                return;
+
+            for (var i = 0; i < actors.Length; i++)
+            {
+                if (actors[i] != null)
+                    actors[i].ApplyGate(false, false);
+                if (controllers[i] != null)
+                    controllers[i].SetPlayOpen(false);
+            }
         }
 
         static InputDevice ResolveDevice(ControlSeat seat)
@@ -91,14 +107,6 @@ namespace MarioPie.Match
                 return null;
 
             return Gamepad.all[seat.GamepadIndex];
-        }
-
-        static void Place(PlayerInput player, Transform spawn)
-        {
-            var body = player.GetComponent<CharacterController>();
-            body.enabled = false;
-            player.transform.SetPositionAndRotation(spawn.position, spawn.rotation);
-            body.enabled = true;
         }
     }
 }

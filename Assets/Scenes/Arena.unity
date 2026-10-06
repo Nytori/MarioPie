@@ -857,7 +857,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &255518765
 Transform:
   m_ObjectHideFlags: 0
@@ -1540,6 +1540,7 @@ GameObject:
   - component: {fileID: 598681870}
   - component: {fileID: 598681869}
   - component: {fileID: 598681868}
+  - component: {fileID: 598681871}
   m_Layer: 0
   m_Name: Match
   m_TagString: Untagged
@@ -1626,6 +1627,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &598681871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 598681867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc3acf84d6e716348b5acc460c02a96c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: MarioPie::MarioPie.Match.MatchDirector
+  flow: {fileID: 11400000, guid: 6c16f1779eb75e8499fac754fbcb620a, type: 2}
+  cameraRig: {fileID: 1438426818}
+  cards: {fileID: 792806845}
+  hud: {fileID: 792806846}
+  spawns:
+  - {fileID: 604933358}
+  - {fileID: 183509543}
 --- !u!1 &604933357
 GameObject:
   m_ObjectHideFlags: 0
@@ -2108,6 +2128,125 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 786359411}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &792806844
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8315435424221083837, guid: 209a71c7fb7859b4b8f45f3d121def29, type: 3}
+      propertyPath: m_Name
+      value: MatchHud
+      objectReference: {fileID: 0}
+    - target: {fileID: 8920868710624922067, guid: 209a71c7fb7859b4b8f45f3d121def29, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8920868710624922067, guid: 209a71c7fb7859b4b8f45f3d121def29, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8920868710624922067, guid: 209a71c7fb7859b4b8f45f3d121def29, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8920868710624922067, guid: 209a71c7fb7859b4b8f45f3d121def29, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8920868710624922067, guid: 209a71c7fb7859b4b8f45f3d121def29, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8920868710624922067, guid: 209a71c7fb7859b4b8f45f3d121def29, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8920868710624922067, guid: 209a71c7fb7859b4b8f45f3d121def29, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8920868710624922067, guid: 209a71c7fb7859b4b8f45f3d121def29, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8920868710624922067, guid: 209a71c7fb7859b4b8f45f3d121def29, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8920868710624922067, guid: 209a71c7fb7859b4b8f45f3d121def29, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8920868710624922067, guid: 209a71c7fb7859b4b8f45f3d121def29, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8920868710624922067, guid: 209a71c7fb7859b4b8f45f3d121def29, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8920868710624922067, guid: 209a71c7fb7859b4b8f45f3d121def29, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8920868710624922067, guid: 209a71c7fb7859b4b8f45f3d121def29, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8920868710624922067, guid: 209a71c7fb7859b4b8f45f3d121def29, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8920868710624922067, guid: 209a71c7fb7859b4b8f45f3d121def29, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8920868710624922067, guid: 209a71c7fb7859b4b8f45f3d121def29, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8920868710624922067, guid: 209a71c7fb7859b4b8f45f3d121def29, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8920868710624922067, guid: 209a71c7fb7859b4b8f45f3d121def29, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8920868710624922067, guid: 209a71c7fb7859b4b8f45f3d121def29, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 209a71c7fb7859b4b8f45f3d121def29, type: 3}
+--- !u!114 &792806845 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1294303886272410008, guid: 209a71c7fb7859b4b8f45f3d121def29, type: 3}
+  m_PrefabInstance: {fileID: 792806844}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0723015f5a78cba4fb83daa76425c9ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: MarioPie::MarioPie.Match.MatchCards
+--- !u!114 &792806846 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5932945124188866054, guid: 209a71c7fb7859b4b8f45f3d121def29, type: 3}
+  m_PrefabInstance: {fileID: 792806844}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9907e0f00eeab13418962b1023dba354, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: MarioPie::MarioPie.Match.MatchScoreHud
 --- !u!1 &795110232
 GameObject:
   m_ObjectHideFlags: 0
@@ -2184,6 +2323,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ca0a001d1ce7274abc0c3096d52e8f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: MarioPie::MarioPie.StandIn
+--- !u!1 &880949029
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 880949030}
+  m_Layer: 0
+  m_Name: CameraShots
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &880949030
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 880949029}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1719700178}
+  - {fileID: 1126086281}
+  - {fileID: 1725395788}
+  - {fileID: 1393579761}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &891394099
 GameObject:
   m_ObjectHideFlags: 0
@@ -2814,6 +2988,51 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1084332211}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1126086280
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1126086281}
+  - component: {fileID: 1126086282}
+  m_Layer: 0
+  m_Name: ShotPlay
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1126086281
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1126086280}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.2560086, y: -0, z: -0, w: 0.9666745}
+  m_LocalPosition: {x: 0, y: 9.2, z: -15.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 880949030}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1126086282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1126086280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e5365fec4ba6c743bbc216d3eea4690, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: MarioPie::MarioPie.Match.CameraAnchor
+  fieldOfView: 36
 --- !u!1 &1131253034
 GameObject:
   m_ObjectHideFlags: 0
@@ -3556,6 +3775,51 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1393444858}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1393579760
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1393579761}
+  - component: {fileID: 1393579762}
+  m_Layer: 0
+  m_Name: ShotWinRight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1393579761
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1393579760}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.2560086, y: -0, z: -0, w: 0.9666745}
+  m_LocalPosition: {x: 1.6, y: 8.210092, z: -13.662161}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 880949030}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1393579762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1393579760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e5365fec4ba6c743bbc216d3eea4690, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: MarioPie::MarioPie.Match.CameraAnchor
+  fieldOfView: 36
 --- !u!1 &1406273530
 GameObject:
   m_ObjectHideFlags: 0
@@ -3770,6 +4034,7 @@ GameObject:
   - component: {fileID: 1438426816}
   - component: {fileID: 1438426815}
   - component: {fileID: 1438426814}
+  - component: {fileID: 1438426818}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -3868,7 +4133,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294967231
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -3895,6 +4160,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1438426818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438426813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9431b1ab85e5bc141966d31addb6488f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: MarioPie::MarioPie.Match.MatchCamera
+  view: {fileID: 1438426816}
+  intro: {fileID: 1719700179}
+  play: {fileID: 1126086282}
+  winLeft: {fileID: 1725395789}
+  winRight: {fileID: 1393579762}
 --- !u!1 &1448929951
 GameObject:
   m_ObjectHideFlags: 0
@@ -4345,6 +4627,96 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1699428290}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1719700177
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1719700178}
+  - component: {fileID: 1719700179}
+  m_Layer: 0
+  m_Name: ShotIntro
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1719700178
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719700177}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.2560086, y: -0, z: -0, w: 0.9666745}
+  m_LocalPosition: {x: 0, y: 15.1697235, z: -20.613514}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 880949030}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1719700179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719700177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e5365fec4ba6c743bbc216d3eea4690, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: MarioPie::MarioPie.Match.CameraAnchor
+  fieldOfView: 42
+--- !u!1 &1725395787
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1725395788}
+  - component: {fileID: 1725395789}
+  m_Layer: 0
+  m_Name: ShotWinLeft
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1725395788
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1725395787}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.2560086, y: -0, z: -0, w: 0.9666745}
+  m_LocalPosition: {x: -1.6, y: 8.210092, z: -13.662161}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 880949030}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1725395789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1725395787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e5365fec4ba6c743bbc216d3eea4690, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: MarioPie::MarioPie.Match.CameraAnchor
+  fieldOfView: 36
 --- !u!1 &1897443770
 GameObject:
   m_ObjectHideFlags: 0
@@ -4831,7 +5203,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2091741405
 Transform:
   m_ObjectHideFlags: 0
@@ -5093,3 +5465,5 @@ SceneRoots:
   - {fileID: 305762848}
   - {fileID: 795110233}
   - {fileID: 598681870}
+  - {fileID: 880949030}
+  - {fileID: 792806844}

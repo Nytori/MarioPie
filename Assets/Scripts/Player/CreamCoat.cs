@@ -51,6 +51,13 @@ namespace MarioPie.Player
             Changed?.Invoke(layers.Count);
         }
 
+        public void Clear()
+        {
+            layers.Clear();
+            Refresh();
+            Changed?.Invoke(0);
+        }
+
         void Refresh()
         {
             var count = layers.Count;

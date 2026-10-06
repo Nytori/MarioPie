@@ -23,6 +23,12 @@ namespace MarioPie
             SetVisible(true);
         }
 
+        public void Refill()
+        {
+            remaining = 0f;
+            SetVisible(true);
+        }
+
         public bool TryTake()
         {
             if (!Available)

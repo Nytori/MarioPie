@@ -13,6 +13,11 @@ namespace MarioPie.Player
                 remaining = seconds;
         }
 
+        public void Clear()
+        {
+            remaining = 0f;
+        }
+
         public void Tick(float dt)
         {
             if (dt <= 0f || remaining <= 0f)

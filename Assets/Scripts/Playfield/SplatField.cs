@@ -16,6 +16,15 @@ namespace MarioPie
             prefab = splatPrefab;
         }
 
+        public void Clear()
+        {
+            for (var i = 0; i < marks.Count; i++)
+            {
+                if (marks[i] != null)
+                    marks[i].SetActive(false);
+            }
+        }
+
         public void Drop(Vector3 point)
         {
             if (prefab == null)
