@@ -1567,6 +1567,8 @@ MonoBehaviour:
   - {fileID: 183509543}
   playerRoot: {fileID: 795110233}
   presentation: {fileID: 11400000, guid: 7b1e9c3a5d604f2e8a4c6b0d1e3f5a72, type: 2}
+  leftCharacter: {fileID: 11400000, guid: c9e5013d6f4b40ac1d8e3f207b6c5a43, type: 2}
+  rightCharacter: {fileID: 11400000, guid: d0f6124e705c41bd2e9f40318c7d6b54, type: 2}
 --- !u!114 &598681869
 MonoBehaviour:
   m_ObjectHideFlags: 0

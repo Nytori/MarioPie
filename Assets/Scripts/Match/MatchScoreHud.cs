@@ -15,9 +15,8 @@ namespace MarioPie.Match
         [SerializeField] RectTransform rightPopup;
         [SerializeField] RectTransform leftPortrait;
         [SerializeField] RectTransform rightPortrait;
-        [SerializeField] RawImage leftFace;
-        [SerializeField] RawImage rightFace;
-        [SerializeField] CapsulePortrait portraitPrefab;
+        [SerializeField] Image leftFace;
+        [SerializeField] Image rightFace;
         [SerializeField] float popupSide = 1.15f;
         [SerializeField] float popupLift = 1.35f;
 
@@ -32,19 +31,6 @@ namespace MarioPie.Match
         bool warnedBoard;
         bool warnedPopup;
         bool warnedFace;
-        CapsulePortrait portraits;
-
-        void Awake()
-        {
-            if (portraitPrefab == null || leftFace == null || rightFace == null)
-            {
-                WarnFaces();
-                return;
-            }
-
-            portraits = Instantiate(portraitPrefab);
-            portraits.Bind(leftFace, rightFace);
-        }
 
         public void Bind(PlayerPieActor sideZero, PlayerPieActor sideOne, MatchDirector match, MatchFlow matchFlow)
         {
@@ -54,17 +40,28 @@ namespace MarioPie.Match
             flow = matchFlow;
             leftShown = int.MinValue;
             rightShown = int.MinValue;
-            if (portraits != null)
-                portraits.Use(BodyOf(sideZero), BodyOf(sideOne));
+            ShowFace(leftFace, sideZero);
+            ShowFace(rightFace, sideOne);
         }
 
-        static Renderer BodyOf(PlayerPieActor actor)
+        void ShowFace(Image face, PlayerPieActor actor)
         {
-            if (actor == null)
-                return null;
+            if (face == null)
+            {
+                WarnFaces();
+                return;
+            }
 
-            var appearance = actor.GetComponent<PlayerAppearance>();
-            return appearance != null ? appearance.Body : null;
+            var portrait = actor != null && actor.Look != null ? actor.Look.portrait : null;
+            if (portrait == null)
+            {
+                WarnPortrait();
+                return;
+            }
+
+            face.sprite = portrait;
+            face.preserveAspect = true;
+            face.type = Image.Type.Simple;
         }
 
         void Update()
@@ -206,11 +203,20 @@ namespace MarioPie.Match
         {
             if (warnedFace)
                 return;
-            if (portraitPrefab != null && leftPortrait != null && rightPortrait != null && leftFace != null && rightFace != null)
+            if (leftPortrait != null && rightPortrait != null && leftFace != null && rightFace != null)
                 return;
 
             warnedFace = true;
             Debug.LogWarning("Falta o retrato do jogador.", this);
+        }
+
+        void WarnPortrait()
+        {
+            if (warnedFace)
+                return;
+
+            warnedFace = true;
+            Debug.LogWarning("Falta a imagem do retrato no personagem.", this);
         }
 
         void WarnPopup()

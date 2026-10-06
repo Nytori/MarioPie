@@ -31,6 +31,7 @@ namespace MarioPie.Player
         bool rematchOpen;
 
         public int Side => side;
+        public CharacterLook Look { get; private set; }
         public int Score { get; private set; }
         public int PiesHeld => hands != null ? hands.Held : 0;
         public bool BlocksMovement => stun.Active || windup > 0f;
@@ -39,9 +40,11 @@ namespace MarioPie.Player
             int sideIndex,
             PieSupply[] pieSupplies,
             SplatField splatField,
-            PiePresentation piePresentation)
+            PiePresentation piePresentation,
+            CharacterLook look)
         {
             side = sideIndex;
+            Look = look;
             supplies = pieSupplies ?? System.Array.Empty<PieSupply>();
             slots = new PieSlot[supplies.Length];
             splats = splatField;
@@ -58,7 +61,7 @@ namespace MarioPie.Player
                 creamCoat = gameObject.AddComponent<CreamCoat>();
 
             var body = transform.Find("Body");
-            creamCoat.Setup(body != null ? body.GetComponent<Renderer>() : null, presentation);
+            creamCoat.Setup(body != null ? body.GetComponent<Renderer>() : null, presentation, look);
             BuildHands();
             lockedAim = side == 0 ? Vector3.right : Vector3.left;
             ready = true;
@@ -181,7 +184,6 @@ namespace MarioPie.Player
             windup = 0f;
             if (creamCoat != null)
                 creamCoat.AddLayer();
-            CreamBurst.Spawn(transform.position + Vector3.up * 1.2f, presentation != null ? presentation.creamBlob : null);
         }
 
         void Update()

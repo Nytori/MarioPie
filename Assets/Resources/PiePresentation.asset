@@ -24,7 +24,4 @@ MonoBehaviour:
   pieModel: {fileID: 100000, guid: a31c7e90b4d64f1a8c2e5b7d9f0a1c23, type: 3}
   splatModel: {fileID: 200000, guid: b42d8f01c5e7502b9d3f6c8e0a1b2d34, type: 3}
   heldPies: {fileID: 400000, guid: d64fa123e709724d1f5b8e0a2c3d4f56, type: 3}
-  creamSlots: {fileID: 500000, guid: e750b234f810835e2a6c9f1b3d4e5067, type: 3}
-  creamBlob: {fileID: 300000, guid: c53e9012d6f8613c0e4a7d9f1b2c3e45, type: 3}
   creamTint: {r: 0.98, g: 0.95, b: 0.86, a: 1}
-  dirtyBodies: []

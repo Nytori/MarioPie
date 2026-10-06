@@ -12,6 +12,8 @@ namespace MarioPie.Match
         [SerializeField] Transform[] spawns;
         [SerializeField] Transform playerRoot;
         [SerializeField] PiePresentation presentation;
+        [SerializeField] CharacterLook leftCharacter;
+        [SerializeField] CharacterLook rightCharacter;
 
         void Awake()
         {
@@ -67,7 +69,10 @@ namespace MarioPie.Match
                 player.GetComponent<PlayerController>().Configure(i, playfield.Limits);
                 player.GetComponent<PlayerAppearance>().ApplySide(i);
                 var actor = player.gameObject.AddComponent<PlayerPieActor>();
-                actor.Configure(i, supplies, splats, presentation);
+                var look = i == 0 ? leftCharacter : rightCharacter;
+                if (look == null)
+                    Debug.LogWarning($"Falta o personagem do lugar {i}.", this);
+                actor.Configure(i, supplies, splats, presentation, look);
                 actors[i] = actor;
             }
 

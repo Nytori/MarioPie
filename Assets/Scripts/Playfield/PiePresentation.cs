@@ -27,15 +27,6 @@ namespace MarioPie
         [Tooltip("Âncoras das tartes na mão. Cada filho é uma tarte que se pode levar.")]
         public GameObject heldPies;
 
-        [Tooltip("Natas no corpo, uma por filho. A ordem é a das tartadas recebidas.")]
-        public GameObject creamSlots;
-
-        [Tooltip("Nata do impacto.")]
-        public GameObject creamBlob;
-
         public Color creamTint = new Color(0.98f, 0.95f, 0.86f);
-
-        [Tooltip("Um corpo por tartada, da primeira em diante. Pivot nos pés, frente em +Z. Quando preenchido, substitui a cápsula e as natas dessa camada.")]
-        public GameObject[] dirtyBodies;
     }
 }

@@ -5,43 +5,36 @@ namespace MarioPie.Player
 {
     public sealed class CreamCoat : MonoBehaviour
     {
+        const int FallbackLayers = 6;
+
         CreamLayers layers = new CreamLayers(1);
-        GameObject[] blobs = System.Array.Empty<GameObject>();
-        GameObject[] dirtyBodies = System.Array.Empty<GameObject>();
+        GameObject[] dirtySources = System.Array.Empty<GameObject>();
+        GameObject[] dirtyInstances = System.Array.Empty<GameObject>();
 
         Renderer body;
         PiePresentation presentation;
         MaterialPropertyBlock block;
         Color baseColor = Color.white;
+        GameObject cleanSource;
+        GameObject cleanInstance;
         GameObject activeBody;
 
         public int Layers => layers.Count;
         public event Action<int> Changed;
 
-        public void Setup(Renderer bodyRenderer, PiePresentation piePresentation)
+        public void Setup(Renderer bodyRenderer, PiePresentation piePresentation, CharacterLook look)
         {
             body = bodyRenderer;
             presentation = piePresentation;
             if (body != null && body.sharedMaterial != null && body.sharedMaterial.HasProperty("_BaseColor"))
                 baseColor = body.sharedMaterial.GetColor("_BaseColor");
 
-            var rig = presentation != null ? PieProps.Spawn(presentation.creamSlots, transform) : null;
-            if (rig != null)
-            {
-                var count = rig.transform.childCount;
-                blobs = new GameObject[count];
-                for (var i = 0; i < count; i++)
-                {
-                    var slot = rig.transform.GetChild(i).gameObject;
-                    slot.SetActive(false);
-                    blobs[i] = slot;
-                }
-            }
-
-            var dirtyCount = presentation != null && presentation.dirtyBodies != null ? presentation.dirtyBodies.Length : 0;
-            var max = Mathf.Max(blobs.Length, dirtyCount);
-            layers = new CreamLayers(max < 1 ? 1 : max);
-            dirtyBodies = new GameObject[layers.Max];
+            cleanSource = look != null ? look.cleanBody : null;
+            dirtySources = look != null && look.dirtyBodies != null ? look.dirtyBodies : System.Array.Empty<GameObject>();
+            var max = dirtySources.Length > 0 ? dirtySources.Length : FallbackLayers;
+            layers = new CreamLayers(max);
+            dirtyInstances = new GameObject[layers.Max];
+            Refresh();
         }
 
         public void AddLayer()
@@ -61,47 +54,54 @@ namespace MarioPie.Player
         void Refresh()
         {
             var count = layers.Count;
-            var bodyPrefab = At(presentation != null ? presentation.dirtyBodies : null, count - 1);
-            if (bodyPrefab != null)
+            var dirtyPrefab = At(dirtySources, count - 1);
+            if (dirtyPrefab != null)
             {
-                if (body != null)
-                {
-                    body.SetPropertyBlock(null);
-                    body.enabled = false;
-                }
-
-                ShowDirtyBody(bodyPrefab, count - 1);
-                SetBlobCount(0);
+                HideCapsule();
+                HideClean();
+                ShowDirtyBody(dirtyPrefab, count - 1);
                 return;
             }
 
             HideDirtyBodies();
-            if (body != null)
-                body.enabled = true;
+            if (cleanSource != null)
+            {
+                HideCapsule();
+                ShowClean();
+                return;
+            }
 
+            ShowCapsule();
             Tint(count);
-            SetBlobCount(count);
         }
 
         void ShowDirtyBody(GameObject prefab, int index)
         {
-            if (index < 0 || index >= dirtyBodies.Length)
+            if (index < 0 || index >= dirtyInstances.Length)
                 return;
 
             if (activeBody != null)
                 activeBody.SetActive(false);
 
-            if (dirtyBodies[index] == null)
-            {
-                var instance = Instantiate(prefab, transform);
-                instance.name = "DirtyBody" + (index + 1);
-                instance.transform.localPosition = Vector3.zero;
-                instance.transform.localRotation = Quaternion.identity;
-                dirtyBodies[index] = instance;
-            }
+            if (dirtyInstances[index] == null)
+                dirtyInstances[index] = SpawnBody(prefab, "DirtyBody" + (index + 1));
 
-            activeBody = dirtyBodies[index];
+            activeBody = dirtyInstances[index];
             activeBody.SetActive(true);
+        }
+
+        void ShowClean()
+        {
+            if (cleanInstance == null)
+                cleanInstance = SpawnBody(cleanSource, "CleanBody");
+
+            cleanInstance.SetActive(true);
+        }
+
+        void HideClean()
+        {
+            if (cleanInstance != null)
+                cleanInstance.SetActive(false);
         }
 
         void HideDirtyBodies()
@@ -111,13 +111,28 @@ namespace MarioPie.Player
             activeBody = null;
         }
 
-        void SetBlobCount(int count)
+        void HideCapsule()
         {
-            for (var i = 0; i < blobs.Length; i++)
-            {
-                if (blobs[i] != null)
-                    blobs[i].SetActive(i < count);
-            }
+            if (body == null)
+                return;
+
+            body.SetPropertyBlock(null);
+            body.enabled = false;
+        }
+
+        void ShowCapsule()
+        {
+            if (body != null)
+                body.enabled = true;
+        }
+
+        GameObject SpawnBody(GameObject prefab, string label)
+        {
+            var instance = Instantiate(prefab, transform);
+            instance.name = label;
+            instance.transform.localPosition = Vector3.zero;
+            instance.transform.localRotation = Quaternion.identity;
+            return instance;
         }
 
         void Tint(int count)
