@@ -1,4 +1,5 @@
 using System;
+using MarioPie.Match.Pause;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,6 +13,7 @@ namespace MarioPie.Player
 
         PlayerInput input;
         InputAction throwAction;
+        InputAction _pauseAction;
         PieSupply[] supplies;
         PieSlot[] slots;
         SplatField splats;
@@ -53,6 +55,8 @@ namespace MarioPie.Player
             throwAction = input != null && input.actions != null
                 ? input.actions.FindAction("Throw", false)
                 : null;
+            _pauseAction = input != null && input.actions != null
+                ? input.actions.FindAction("Pause") : null;
             if (throwAction == null)
                 Debug.LogWarning("A acção Throw não está no mapa de input.", this);
 
@@ -209,6 +213,8 @@ namespace MarioPie.Player
                 BeginThrow();
             else if (!playOpen && rematchOpen && PressedThrow())
                 requestRematch?.Invoke();
+
+            if (_pauseAction.WasPerformedThisDynamicUpdate() && playOpen) PauseManager.Instance.TogglePause();
         }
 
         void LateUpdate()

@@ -14,7 +14,7 @@ namespace MarioPie.Match
         float age;
         float tilt;
         bool armed;
-
+        
         void Awake()
         {
             rect = transform as RectTransform;
