@@ -125,6 +125,7 @@ namespace MarioPie.Match
                 Winner = MatchResult.Winner(actors[0].Score, actors[1].Score);
 
             Present();
+            MarioPie.Sfx.SetHurry(round.Phase == MatchPhase.Play && round.Hurry);
         }
 
         void Present()

@@ -36,6 +36,7 @@ namespace MarioPie
 
             remaining = respawnSeconds;
             SetVisible(false);
+            Sfx.Grab();
             return true;
         }
 
