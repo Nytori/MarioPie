@@ -66,13 +66,18 @@ namespace MarioPie.Player
             if (creamCoat == null)
                 creamCoat = gameObject.AddComponent<CreamCoat>();
 
-            var body = transform.Find("Body");
-            creamCoat.Setup(body != null ? body.GetComponent<Renderer>() : null, presentation, look);
+            var appearance = GetComponent<PlayerAppearance>();
+            creamCoat.Setup(appearance != null ? appearance.ActiveDirtLayers : null);
             BuildHands();
             lockedAim = side == 0 ? Vector3.right : Vector3.left;
             ready = true;
             
             _animController = GetComponentInChildren<AnimationController>();
+
+            var fancyLights = FindAnyObjectByType<FancyLedLights>();
+
+            if (side == 0) fancyLights.rat = this;
+            else fancyLights.cat = this;
         }
 
         void BuildHands()
