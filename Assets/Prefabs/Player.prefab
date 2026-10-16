@@ -3665,6 +3665,12 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 49e88e44be8f68c4d87181978c48687b, type: 2}
   rat: {fileID: 6460926534183005949}
   cat: {fileID: 5927261458178728481}
+  ratDirtLayers:
+  - {fileID: 2983428520763640239}
+  - {fileID: 422409714518885788}
+  catDirtLayers:
+  - {fileID: 2490291553015563635}
+  - {fileID: 1023651863806232896}
 --- !u!1 &5468450422616116651
 GameObject:
   m_ObjectHideFlags: 0
