@@ -4,10 +4,16 @@ namespace MarioPie
 {
     public static class Sfx
     {
+        const float MatchVolume = 0.5f;
+        const float WinVolume = 0.62f;
+
         static PieSfx bank;
         static SfxHost host;
         static AudioSource loop;
+        static AudioSource music;
         static bool warnedBank;
+        static bool warnedMatch;
+        static bool warnedWin;
 
         public static void Grab()
         {
@@ -63,6 +69,66 @@ namespace MarioPie
             loop.Play();
         }
 
+        public static void PlayMatch()
+        {
+            PlayMusic(true);
+        }
+
+        public static void PlayWin()
+        {
+            PlayMusic(false);
+        }
+
+        public static void StopMusic()
+        {
+            if (music == null)
+                return;
+
+            music.Stop();
+            music.clip = null;
+        }
+
+        static void PlayMusic(bool matchBed)
+        {
+            if (!Ready())
+                return;
+
+            var clip = matchBed ? bank.match : bank.win;
+            if (clip == null)
+            {
+                if (!matchBed)
+                    StopMusic();
+                WarnMissingMusic(matchBed);
+                return;
+            }
+
+            music.Stop();
+            music.clip = clip;
+            music.volume = matchBed ? MatchVolume : WinVolume;
+            music.pitch = 1f;
+            music.loop = matchBed;
+            music.Play();
+        }
+
+        static void WarnMissingMusic(bool matchBed)
+        {
+            if (matchBed)
+            {
+                if (warnedMatch)
+                    return;
+
+                warnedMatch = true;
+                Debug.LogWarning("Falta a música da partida no asset PieSfx.");
+                return;
+            }
+
+            if (warnedWin)
+                return;
+
+            warnedWin = true;
+            Debug.LogWarning("Falta a música de vitória no asset PieSfx.");
+        }
+
         static void Play(AudioClip clip, float pitch, float volume, float maxSeconds)
         {
             if (!Ready() || clip == null)
@@ -109,6 +175,10 @@ namespace MarioPie
             loop.playOnAwake = false;
             loop.spatialBlend = 0f;
             loop.loop = true;
+            music = root.AddComponent<AudioSource>();
+            music.playOnAwake = false;
+            music.spatialBlend = 0f;
+            music.loop = true;
             return true;
         }
     }

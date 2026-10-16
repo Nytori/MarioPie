@@ -10,8 +10,13 @@ namespace MarioPie.Player
         
         [SerializeField] private GameObject rat;
         [SerializeField] private GameObject cat;
+        [SerializeField] GameObject[] ratDirtLayers;
+        [SerializeField] GameObject[] catDirtLayers;
 
         public Renderer Body => body;
+
+        public GameObject[] ActiveDirtLayers =>
+            cat != null && cat.activeSelf ? catDirtLayers : ratDirtLayers;
 
         public AnimationController getModelController()
         {
