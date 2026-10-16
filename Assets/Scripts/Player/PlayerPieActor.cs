@@ -1,5 +1,6 @@
 using System;
 using MarioPie.Match.Pause;
+using Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,11 +10,12 @@ namespace MarioPie.Player
     public sealed class PlayerPieActor : MonoBehaviour
     {
         readonly HitStun stun = new HitStun();
-        PieHands hands;
+        public PieHands hands;
 
         PlayerInput input;
         InputAction throwAction;
         InputAction _pauseAction;
+        private AnimationController _animController;
         PieSupply[] supplies;
         PieSlot[] slots;
         SplatField splats;
@@ -69,6 +71,8 @@ namespace MarioPie.Player
             BuildHands();
             lockedAim = side == 0 ? Vector3.right : Vector3.left;
             ready = true;
+            
+            _animController = GetComponentInChildren<AnimationController>();
         }
 
         void BuildHands()
@@ -186,6 +190,8 @@ namespace MarioPie.Player
             var stunSeconds = presentation != null ? presentation.stunSeconds : PieDefaults.StunSeconds;
             stun.Apply(stunSeconds < 0f ? PieDefaults.StunSeconds : stunSeconds);
             windup = 0f;
+            _animController.Hurt(true);
+            print("hello from " + gameObject.name);
             if (creamCoat != null)
                 creamCoat.AddLayer();
         }
@@ -238,6 +244,10 @@ namespace MarioPie.Player
             lockedAim = PieAim.Direction(side, move, maxAngle);
             transform.rotation = Quaternion.LookRotation(lockedAim, Vector3.up);
             var windupSeconds = presentation != null ? presentation.windupSeconds : PieDefaults.WindupSeconds;
+            
+            if (!hands.TrySpend())
+                return;
+            
             if (windupSeconds <= 0f)
             {
                 Release();
@@ -250,8 +260,6 @@ namespace MarioPie.Player
         void Release()
         {
             windup = 0f;
-            if (!hands.TrySpend())
-                return;
 
             refire = Mathf.Max(0f, presentation != null ? presentation.refireSeconds : PieDefaults.RefireSeconds);
             var speed = Positive(presentation != null ? presentation.throwSpeed : PieDefaults.ThrowSpeed, PieDefaults.ThrowSpeed);
@@ -322,11 +330,6 @@ namespace MarioPie.Player
                     var t = 1f - windup / windupSeconds;
                     visual.transform.position = transform.position + Vector3.up * PieDefaults.ReleaseHeight + lockedAim * Mathf.Lerp(0.35f, 0.8f, t);
                     visual.transform.rotation = Quaternion.identity;
-                }
-                else
-                {
-                    visual.transform.localPosition = heldRest[i];
-                    visual.transform.localRotation = Quaternion.identity;
                 }
             }
         }

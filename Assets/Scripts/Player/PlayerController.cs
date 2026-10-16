@@ -10,7 +10,7 @@ namespace MarioPie.Player
         [SerializeField] PlayerInput input;
 
         PlayfieldLimits limits;
-        PlayerPieActor pies;
+        public PlayerPieActor pies;
         int sideIndex;
         bool ready;
         bool playOpen = true;
