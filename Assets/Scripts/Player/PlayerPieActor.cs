@@ -191,7 +191,6 @@ namespace MarioPie.Player
             stun.Apply(stunSeconds < 0f ? PieDefaults.StunSeconds : stunSeconds);
             windup = 0f;
             _animController.Hurt(true);
-            print("hello from " + gameObject.name);
             if (creamCoat != null)
                 creamCoat.AddLayer();
             MarioPie.Sfx.Hit();
@@ -248,6 +247,8 @@ namespace MarioPie.Player
             
             if (!hands.TrySpend())
                 return;
+            
+            _animController.Throw();
             
             if (windupSeconds <= 0f)
             {

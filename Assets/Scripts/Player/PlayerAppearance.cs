@@ -1,3 +1,4 @@
+using Player;
 using UnityEngine;
 
 namespace MarioPie.Player
@@ -11,6 +12,12 @@ namespace MarioPie.Player
         [SerializeField] private GameObject cat;
 
         public Renderer Body => body;
+
+        public AnimationController getModelController()
+        {
+            if (cat.activeSelf) return cat.GetComponent<AnimationController>();
+            return rat.GetComponent<AnimationController>();
+        }
 
         public void ApplySide(int sideIndex)
         {

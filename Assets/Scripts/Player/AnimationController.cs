@@ -7,11 +7,7 @@ namespace Player
     public class AnimationController : MonoBehaviour
     {
         private static readonly int IsWalking = Animator.StringToHash("IsWalking");
-        private static readonly int ThrowT1 = Animator.StringToHash("ThrowT1");
-        private static readonly int ThrowT2 = Animator.StringToHash("ThrowT2");
         private static readonly int Pies = Animator.StringToHash("Pies");
-        private static readonly int HitF = Animator.StringToHash("HitF");
-        private static readonly int HitB = Animator.StringToHash("HitB");
 
         [SerializeField]
         private Animator topAnimator;
@@ -48,24 +44,58 @@ namespace Player
             else rightArm.weight = 0;
         }
 
-        private void Throw()
+        public void Throw()
         {
-            topAnimator.SetTrigger(ThrowT1);
-            topAnimator.SetTrigger(ThrowT2);
+            if (playerController.pies.hands.Held == 0)
+            {
+                topAnimator.Play("ArmatureTOP|ThrowPieTop1");
+                bottomAnimator.Play("ArmatureBOTTOM|ThrowPieBottom1");
+            }
+            else if (playerController.pies.hands.Held == 1)
+            {
+                topAnimator.Play("ArmatureTOP|ThrowPieTop2");
+                bottomAnimator.Play("ArmatureBOTTOM|ThrowPieBottom2");
+            }
         }
         
         public void Hurt(bool fromFront)
         {
             if (fromFront)
             {
-                topAnimator.SetTrigger(HitF);
-                bottomAnimator.SetTrigger(HitF);
+                topAnimator.Play("ArmatureTOP|GetHitFrontTop");
+                bottomAnimator.Play("ArmatureBOTTOM|GetHitFrontBottom");
             }
             else
             {
-                topAnimator.SetTrigger(HitB);
-                bottomAnimator.SetTrigger(HitB);
+                topAnimator.Play("ArmatureTOP|GetHitBackTop");
+                bottomAnimator.Play("ArmatureBOTTOM|GetHitBackBottom");
             }
+        }
+
+        public void Win()
+        {
+            if (isCat)
+            {
+                topAnimator.Play("ArmatureTOP|WinCatTop");
+                bottomAnimator.Play("ArmatureBOTTOM|WinCatBottom");
+            }
+            else
+            {
+                topAnimator.Play("ArmatureTOP|WinRatTop");
+                bottomAnimator.Play("ArmatureBOTTOM|WinRatBottom");
+            }
+        }
+        
+        public void Lose()
+        {
+            topAnimator.Play("ArmatureTOP|LoseTop");
+            bottomAnimator.Play("ArmatureBOTTOM|LoseBottom");
+        }
+
+        public void ResetAnimations()
+        {
+            topAnimator.Play("ArmatureTOP|IdleTop");
+            bottomAnimator.Play("ArmatureBOTTOM|IdleBottom");
         }
     }
 }

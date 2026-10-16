@@ -1,4 +1,5 @@
 using MarioPie.Player;
+using Player;
 using UnityEngine;
 
 namespace MarioPie.Match
@@ -218,6 +219,15 @@ namespace MarioPie.Match
                     continue;
 
                 ceremonies[i].Show(PoseFor(i));
+
+                if (round.Phase == MatchPhase.Result)
+                {
+                    foreach (var actor in actors)
+                    {
+                        if (actor.Side == Winner) actor.GetComponent<PlayerAppearance>().getModelController().Win();
+                        else actor.GetComponent<PlayerAppearance>().getModelController().Lose();
+                    }
+                }
             }
         }
 
@@ -279,7 +289,10 @@ namespace MarioPie.Match
                 actors[i].BindMatch(flight, RequestRematch);
                 actors[i].ResetRound();
                 if (spawns != null && i < spawns.Length)
+                {
                     PlayerSpawn.Place(actors[i], spawns[i]);
+                    foreach (var actor in actors) actor.GetComponent<PlayerAppearance>().getModelController().ResetAnimations();
+                }
             }
 
             if (supplies != null)
