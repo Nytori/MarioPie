@@ -19,7 +19,7 @@ MonoBehaviour:
   refireSeconds: 0.12
   stunSeconds: 1.05
   grabRadius: 1.5
-  respawnSeconds: 2.4
+  respawnSeconds: 4
   maxAimDegrees: 48
   pieModel: {fileID: 100000, guid: a31c7e90b4d64f1a8c2e5b7d9f0a1c23, type: 3}
   splatModel: {fileID: 200000, guid: b42d8f01c5e7502b9d3f6c8e0a1b2d34, type: 3}
