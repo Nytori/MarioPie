@@ -60,13 +60,35 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4869761963534392683, guid: 674924fe2a881ca4cb0dc26219e1c566, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 504088126715520517}
   m_SourcePrefab: {fileID: 100100000, guid: 674924fe2a881ca4cb0dc26219e1c566, type: 3}
 --- !u!4 &4138915455426869730 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4138915455426492531, guid: 674924fe2a881ca4cb0dc26219e1c566, type: 3}
   m_PrefabInstance: {fileID: 410001}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4869761963534277882 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4869761963534392683, guid: 674924fe2a881ca4cb0dc26219e1c566, type: 3}
+  m_PrefabInstance: {fileID: 410001}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &504088126715520517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4869761963534277882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90cdcbfee08d4281aae82a089cd9a80d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player.StickToHands
+  thisHand: {fileID: 0}
+  left: 1
 --- !u!1001 &420001
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -94,10 +116,32 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4869761963534392683, guid: 674924fe2a881ca4cb0dc26219e1c566, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7940858356063463613}
   m_SourcePrefab: {fileID: 100100000, guid: 674924fe2a881ca4cb0dc26219e1c566, type: 3}
 --- !u!4 &4138915455426859218 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4138915455426492531, guid: 674924fe2a881ca4cb0dc26219e1c566, type: 3}
   m_PrefabInstance: {fileID: 420001}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4869761963534284234 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4869761963534392683, guid: 674924fe2a881ca4cb0dc26219e1c566, type: 3}
+  m_PrefabInstance: {fileID: 420001}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7940858356063463613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4869761963534284234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90cdcbfee08d4281aae82a089cd9a80d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player.StickToHands
+  thisHand: {fileID: 0}
+  left: 0
