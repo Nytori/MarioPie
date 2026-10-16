@@ -18,3 +18,5 @@ MonoBehaviour:
   floorSplat: {fileID: 8300000, guid: 2d8f6b10c4a74e59b1d3f7a90c6e5b22, type: 3}
   stun: {fileID: 8300000, guid: 5b0d2e84f7c14a96b8e1d3c5a7f90b44, type: 3}
   hurry: {fileID: 8300000, guid: 6a3c8f15e9d24b70c4a2b6d8e0f1c555, type: 3}
+  match: {fileID: 8300000, guid: 8c3e1a04b7d64f2e9a5c6b8d0e1f2a33, type: 3}
+  win: {fileID: 8300000, guid: 4b7d2e91c0a54f6e8d3b1c5a7e9f0b44, type: 3}

@@ -22,5 +22,12 @@ namespace MarioPie
 
         [Tooltip("Relógio dos últimos segundos. CC0, OwlStorm, Freesound 212181.")]
         public AudioClip hurry;
+
+        [Header("Música")]
+        [Tooltip("Começa com a cutscene e segue até ao fim da partida.")]
+        public AudioClip match;
+
+        [Tooltip("Começa quando um jogador ganha. A música da partida pára.")]
+        public AudioClip win;
     }
 }

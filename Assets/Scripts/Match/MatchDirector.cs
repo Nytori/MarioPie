@@ -92,6 +92,7 @@ namespace MarioPie.Match
                 hud.Bind(actors[0], actors[1], this, flow);
 
             running = true;
+            MarioPie.Sfx.PlayMatch();
             Present();
             return true;
         }
@@ -114,6 +115,7 @@ namespace MarioPie.Match
                     Winner = MatchResult.Tie;
                     ResetTable();
                     opening.Begin();
+                    MarioPie.Sfx.PlayMatch();
                 }
             }
 
@@ -123,7 +125,13 @@ namespace MarioPie.Match
             var before = round.Phase;
             round.Tick(Time.deltaTime, flight != null ? flight.Count : 0, round.Phase == MatchPhase.Intro && opening.Done);
             if (before != MatchPhase.Result && round.Phase == MatchPhase.Result)
+            {
                 Winner = MatchResult.Winner(actors[0].Score, actors[1].Score);
+                if (Winner == MatchResult.Tie)
+                    MarioPie.Sfx.StopMusic();
+                else
+                    MarioPie.Sfx.PlayWin();
+            }
 
             Present();
             MarioPie.Sfx.SetHurry(round.Phase == MatchPhase.Play && round.Hurry);
