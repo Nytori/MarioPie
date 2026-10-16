@@ -9,7 +9,7 @@ namespace MarioPie.Player
         public const float RefireSeconds = 0.12f;
         public const float StunSeconds = 1.05f;
         public const float GrabRadius = 1.5f;
-        public const float RespawnSeconds = 2.4f;
+        public const float RespawnSeconds = 4f;
         public const float MaxAimDegrees = 48f;
         public const float ReleaseHeight = 1.25f;
         public const float HitRadius = 0.55f;
