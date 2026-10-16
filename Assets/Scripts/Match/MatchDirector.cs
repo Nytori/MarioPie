@@ -89,7 +89,10 @@ namespace MarioPie.Match
 
             HideSpawnMarkers();
             if (hud != null)
+            {
+                hud.gameObject.SetActive(false);
                 hud.Bind(actors[0], actors[1], this, flow);
+            }
 
             running = true;
             MarioPie.Sfx.PlayMatch();
@@ -124,6 +127,7 @@ namespace MarioPie.Match
 
             var before = round.Phase;
             round.Tick(Time.deltaTime, flight != null ? flight.Count : 0, round.Phase == MatchPhase.Intro && opening.Done);
+            PresentHudVisibility();
             if (before != MatchPhase.Result && round.Phase == MatchPhase.Result)
             {
                 Winner = MatchResult.Winner(actors[0].Score, actors[1].Score);
@@ -143,6 +147,12 @@ namespace MarioPie.Match
             PresentCamera();
             PresentCards();
             PresentPoses();
+        }
+
+        void PresentHudVisibility()
+        {
+            if (hud != null)
+                hud.gameObject.SetActive(round.Phase != MatchPhase.Intro);
         }
 
         void ApplyActors()
@@ -317,6 +327,8 @@ namespace MarioPie.Match
                 splats.Clear();
             if (cards != null)
                 cards.Hide();
+            if (hud != null)
+                hud.gameObject.SetActive(false);
         }
 
     }
