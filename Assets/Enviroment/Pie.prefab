@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7031798227600046119}
   - component: {fileID: 6527123826865383880}
   m_Layer: 0
-  m_Name: FinalPie
+  m_Name: Pie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
