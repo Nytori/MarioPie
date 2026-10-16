@@ -15,6 +15,9 @@ namespace MarioPie.Match.Pause
         
         [SerializeField]
         private Image background;
+        
+        [SerializeField]
+        private Transform pauseMenu;
 
         private void Pause()
         {
@@ -23,6 +26,8 @@ namespace MarioPie.Match.Pause
             color.a = isPaused ? color.a + Time.fixedDeltaTime : color.a - Time.fixedDeltaTime;
             background.color = color;
             Time.timeScale = 0;
+            
+            pauseMenu.gameObject.SetActive(true);
         }
 
         private bool HasTransitioned()
@@ -37,6 +42,8 @@ namespace MarioPie.Match.Pause
             color.a = isPaused ? color.a + Time.fixedDeltaTime : color.a - Time.fixedDeltaTime;
             background.color = color;
             Time.timeScale = 1;
+            
+            pauseMenu.gameObject.SetActive(false);
         }
 
         public void TogglePause()

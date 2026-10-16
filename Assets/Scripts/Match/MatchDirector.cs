@@ -232,6 +232,7 @@ namespace MarioPie.Match
                 {
                     foreach (var actor in actors)
                     {
+                        actor.hands.Clear();
                         if (actor.Side == Winner) actor.GetComponent<PlayerAppearance>().getModelController().Win();
                         else actor.GetComponent<PlayerAppearance>().getModelController().Lose();
                     }

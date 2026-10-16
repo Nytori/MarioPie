@@ -17,6 +17,11 @@ namespace UI
         {
             controls.SetActive(!controls.activeSelf);
         }
+
+        public void OnClickMenu()
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
         
         public void OnClickQuit()
         {
