@@ -194,6 +194,7 @@ namespace MarioPie.Player
             print("hello from " + gameObject.name);
             if (creamCoat != null)
                 creamCoat.AddLayer();
+            MarioPie.Sfx.Hit();
         }
 
         void Update()
@@ -269,6 +270,7 @@ namespace MarioPie.Player
 
         void LaunchThrown(float speed, float lob, bool hitOpponent)
         {
+            MarioPie.Sfx.Throw();
             var gravity = Positive(presentation != null ? presentation.gravity : PieDefaults.Gravity, PieDefaults.Gravity);
             var origin = transform.position + Vector3.up * PieDefaults.ReleaseHeight + lockedAim * 0.8f;
             var pie = new GameObject("Thrown Pie");

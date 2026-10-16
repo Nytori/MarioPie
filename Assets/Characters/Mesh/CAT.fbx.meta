@@ -13,38 +13,38 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: RatDarkGrey
-    second: {fileID: 2100000, guid: 50cc16228b6df744c94c16808b13d693, type: 2}
+    second: {fileID: 2100000, guid: e19b453524d201741b6ca35009091449, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: RatDarkTurquese
-    second: {fileID: 2100000, guid: 35ae7d1dbec2d12498925f6f4d3c633e, type: 2}
+    second: {fileID: 2100000, guid: 765572cef378440418efad1924338f4c, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: RatGrey
-    second: {fileID: 2100000, guid: 1e33ca1584ad43f46baa49faf4ceb6f8, type: 2}
+    second: {fileID: 2100000, guid: 55830db90f7eaa045bf0302a0653eb43, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: RatLightTurquoise
-    second: {fileID: 2100000, guid: 34d791bd53b29e4479bf4921e20164d5, type: 2}
+    second: {fileID: 2100000, guid: a4e4a511a605ee643bdce259913465a2, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: RatScreenColor
-    second: {fileID: 2100000, guid: b1356224bcf58ce4e815296b52bb39eb, type: 2}
+    second: {fileID: 2100000, guid: d2a44c1a1896cc949974b6a51b6c92a4, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: RatTurquese
-    second: {fileID: 2100000, guid: 7bf326a25ceb1d14c85f1b39454c6aec, type: 2}
+    second: {fileID: 2100000, guid: 14ee124f585523143b603bcb29d83e9a, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
     materialSearch: 1
     materialLocation: 1
-    searchTexturesGlobally: 0
+    searchTexturesGlobally: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0

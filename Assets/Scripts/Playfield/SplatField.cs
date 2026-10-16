@@ -49,6 +49,7 @@ namespace MarioPie
             mark.transform.localScale = new Vector3(size, 1f, size);
             mark.transform.SetPositionAndRotation(point, Quaternion.Euler(0f, Random.Range(0f, 360f), 0f));
             mark.SetActive(true);
+            Sfx.Floor();
         }
     }
 }
