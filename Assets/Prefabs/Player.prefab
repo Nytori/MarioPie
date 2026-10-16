@@ -593,7 +593,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1004204300680831083}
-  - component: {fileID: 996227137639064456}
+  - component: {fileID: 4835671371143031939}
   m_Layer: 0
   m_Name: CAT
   m_TagString: Untagged
@@ -630,7 +630,7 @@ Transform:
   - {fileID: 199969731758746697}
   m_Father: {fileID: 6202156968242651758}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &996227137639064456
+--- !u!114 &4835671371143031939
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -639,24 +639,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 478638101144566481}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c103056c7aa8f7f49a62a4902115e423, type: 3}
+  m_Script: {fileID: 11500000, guid: fbeb59c0e7a444f3a4379388bd530753, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: MarioPie::MarioPie.PlayerAnim
-  topAnimator: {fileID: 4886126896504516802}
-  bottomAnimator: {fileID: 4994520775388796282}
-  rigLeft: {fileID: 4845758495264683330}
-  rigRight: {fileID: 2074382725976551138}
-  isWalking: 0
-  throw1: 0
-  throw2: 0
-  grab1: 0
-  grab2: 0
-  hitFront: 0
-  hitBack: 0
-  won: 0
-  lose: 0
-  leftHandHasPie: 0
-  rightHandHasPie: 0
+  m_EditorClassIdentifier: Assembly-CSharp::Player.AnimationController
+  topAnimator: {fileID: 0}
+  bottomAnimator: {fileID: 0}
+  playerController: {fileID: 0}
+  bodyController: {fileID: 0}
+  rightArm: {fileID: 0}
+  leftArm: {fileID: 0}
+  isCat: 0
 --- !u!1 &579953290001061155
 GameObject:
   m_ObjectHideFlags: 0
@@ -4191,6 +4183,7 @@ MonoBehaviour:
   speed: 6
   body: {fileID: 6039209441975216432}
   input: {fileID: 5525496427361372176}
+  pies: {fileID: 0}
 --- !u!114 &6909526710795321867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4991,7 +4984,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5972339213040874567}
-  - component: {fileID: 2605884841517059969}
+  - component: {fileID: 4970093620949785531}
   m_Layer: 0
   m_Name: RAT
   m_TagString: Untagged
@@ -5028,7 +5021,7 @@ Transform:
   - {fileID: 2862077538584588638}
   m_Father: {fileID: 6202156968242651758}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &2605884841517059969
+--- !u!114 &4970093620949785531
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5037,24 +5030,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 6460926534183005949}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c103056c7aa8f7f49a62a4902115e423, type: 3}
+  m_Script: {fileID: 11500000, guid: fbeb59c0e7a444f3a4379388bd530753, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: MarioPie::MarioPie.PlayerAnim
+  m_EditorClassIdentifier: Assembly-CSharp::Player.AnimationController
   topAnimator: {fileID: 2440897653226127280}
   bottomAnimator: {fileID: 6297830085808536268}
-  rigLeft: {fileID: 4864979268062130468}
-  rigRight: {fileID: 7135371468222418695}
-  isWalking: 0
-  throw1: 0
-  throw2: 0
-  grab1: 0
-  grab2: 0
-  hitFront: 0
-  hitBack: 0
-  won: 0
-  lose: 0
-  leftHandHasPie: 0
-  rightHandHasPie: 0
+  playerController: {fileID: 2294454834305722336}
+  bodyController: {fileID: 6039209441975216432}
+  rightArm: {fileID: 7135371468222418695}
+  leftArm: {fileID: 4864979268062130468}
+  isCat: 0
 --- !u!1 &6489698928847919645
 GameObject:
   m_ObjectHideFlags: 0
