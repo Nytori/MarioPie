@@ -68,7 +68,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 5111a181fd8b097439a19afd178c1400, type: 3}
     m_FontSize: 88
     m_FontStyle: 1
     m_BestFit: 0
@@ -81,20 +81,6 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: +1
---- !u!114 &5113017643130931321
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7878227475152911064}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bec4a051ee2ea84dbb7058f24ea835d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: MarioPie::MarioPie.Match.ScoreFloater
-  rise: 124
-  life: 0.8
 --- !u!114 &5113017643130931322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,3 +96,17 @@ MonoBehaviour:
   m_EffectColor: {r: 0.05, g: 0.24, b: 0.02, a: 0.95}
   m_EffectDistance: {x: 3, y: -3}
   m_UseGraphicAlpha: 1
+--- !u!114 &5113017643130931321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7878227475152911064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bec4a051ee2ea84dbb7058f24ea835d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: MarioPie::MarioPie.Match.ScoreFloater
+  rise: 124
+  life: 0.8
