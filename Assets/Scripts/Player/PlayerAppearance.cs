@@ -6,6 +6,9 @@ namespace MarioPie.Player
     {
         [SerializeField] Renderer body;
         [SerializeField] Material[] sideMaterials;
+        
+        [SerializeField] private GameObject rat;
+        [SerializeField] private GameObject cat;
 
         public Renderer Body => body;
 
@@ -16,6 +19,9 @@ namespace MarioPie.Player
 
             var index = Mathf.Clamp(sideIndex, 0, sideMaterials.Length - 1);
             body.sharedMaterial = sideMaterials[index];
+
+            if ((sideIndex + 1) % 2 != 0) rat.SetActive(true);
+            else cat.SetActive(true);
         }
     }
 }
