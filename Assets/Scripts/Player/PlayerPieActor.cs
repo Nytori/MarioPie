@@ -73,6 +73,11 @@ namespace MarioPie.Player
             ready = true;
             
             _animController = GetComponentInChildren<AnimationController>();
+
+            var fancyLights = FindAnyObjectByType<FancyLedLights>();
+
+            if (side == 0) fancyLights.rat = this;
+            else fancyLights.cat = this;
         }
 
         void BuildHands()
