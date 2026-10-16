@@ -30,7 +30,7 @@ namespace MarioPie
             if (prefab == null)
                 return;
 
-            point.y = 0.025f;
+            point.y = 0.06f;
             GameObject mark;
             if (marks.Count < Capacity)
             {

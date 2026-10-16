@@ -32,7 +32,6 @@ namespace MarioPie.Match
             }
 
             var supplies = PieTableBinder.Bind(
-                playfield.transform,
                 Mathf.Max(0.05f, presentation.respawnSeconds),
                 Mathf.Max(0.2f, presentation.grabRadius));
             if (supplies.Length == 0)
