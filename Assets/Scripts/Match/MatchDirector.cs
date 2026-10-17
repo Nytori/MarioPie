@@ -219,6 +219,10 @@ namespace MarioPie.Match
                     break;
                 case MatchPhase.Result:
                     cards.Show(ResultCard());
+                    if (round.PhaseElapsed >= flow.resultCardDelay)
+                        cards.Show(ResultCard());
+                    else
+                        cards.Hide();
                     break;
                 default:
                     cards.Hide();

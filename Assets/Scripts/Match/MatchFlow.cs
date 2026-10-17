@@ -14,6 +14,7 @@ namespace MarioPie.Match
         [Min(0f)] public float resultHoldSeconds = 1.5f;
         [Min(0.1f)] public float resultCameraSeconds = 1.2f;
         [Min(0.05f)] public float scorePunchSeconds = 0.28f;
+        [Min(0f)] public float resultCardDelay = 0f;
 
         [Header("Placar")]
         public Color hurryColor = new Color(1f, 0.32f, 0.22f, 1f);

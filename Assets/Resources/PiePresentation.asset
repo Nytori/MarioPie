@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4e8a1f07b2d4e6a9c3d5f1a8b7e6d05, type: 3}
   m_Name: PiePresentation
   m_EditorClassIdentifier: MarioPie::MarioPie.PiePresentation
-  throwSpeed: 11
-  lobDegrees: 34
+  throwSpeed: 8
+  lobDegrees: 23.2
   gravity: 16
   windupSeconds: 0.16
-  refireSeconds: 0.12
+  refireSeconds: 0.21
   stunSeconds: 1.05
   grabRadius: 1.5
   respawnSeconds: 4

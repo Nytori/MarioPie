@@ -20,6 +20,7 @@ MonoBehaviour:
   resultHoldSeconds: 1.5
   resultCameraSeconds: 1.2
   scorePunchSeconds: 0.28
+  resultCardDelay: 2
   hurryColor: {r: 1, g: 0.32, b: 0.22, a: 1}
   timeColor: {r: 1, g: 1, b: 1, a: 1}
   winScoreScale: 1.35
